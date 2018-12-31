@@ -1,0 +1,56 @@
+1、voteSystem【建库】
+create database voteSystem charset utf8 collate utf8_general_ci;
+
+use voteSystem;
+
+2、user【用户登录注册】
+create table user(
+  UId integer primary key auto_increment, /*自动增长Id*/
+  Name varchar(32) unique not null, /*用户名唯一*/
+  Psw varchar(32) not null, /*md5加密过后的密码*/
+  Gender int, /*性别，用于在统计时做数据分析*/
+  Age int check (Age>=0 and Age<=1000) /*年龄，用于在统计时做数据分析*/
+);
+
+3、subject【用户发起或修改投票的主题】
+create table subject(
+  SubjectId integer primary key auto_increment, /*自动增长Id*/
+  UId integer not null, /*发起人Id*/
+  Title varchar(64) not null, /*投票主题*/
+  OptionWay int not null, /*单选、多选等方式*/
+  StartTime bigint not null, /*投票发起时间*/
+  EndTime bigint not null /*投票结束时间*/
+);
+
+4、optionSubject【投票主题的选项】
+create table optionSubject(
+  OptionId integer auto_increment, /*自动增长Id*/
+  SubjectId integer not null, /*投票主题Id*/
+  OptionContent varchar(128) not null, /*投票选项内容*/
+  primary key(SubjectId,OptionContent), /*定义投票主题Id和选项内容为主码，即约束了主题的投票选项不能相同*/
+  index (OptionId) /*自增的需要建立一个索引*/
+);
+
+
+5、vote【进行投票的情况统计】
+create table vote(
+  SubjectId integer not null, /*投票主题Id*/
+  OptionId integer not null,  /*选择的选项*/
+  UId integer not null /*投票的用户*/
+);
+
+6、基于数据库安全性创建一个只对该数据库具有全部操作权限的用户【这里允许本地和外网访问，我的外网IP例如：123.206.102.190】，程序运行中将使用这个账户【账号voteSystem 密码voteSystem】
+
+grant all privileges on voteSystem.* to 'voteSystem'@'%' identified by 'voteSystem'; 
+grant all privileges on voteSystem.* to 'voteSystem'@'localhost' identified by 'voteSystem'; 
+
+flush privileges; /*刷新访问权限*/
+
+/*远程访问方法*/
+mysql -u  voteSystem -h 123.206.102.190 -p
+
+
+/*删库*/
+drop database voteSystem;
+/*删除用户*/
+drop user voteSystem;
