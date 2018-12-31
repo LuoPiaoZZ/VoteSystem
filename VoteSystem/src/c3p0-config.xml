@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+	<!-- 这是默认配置信息 -->
+	<default-config> 
+		<!-- 连接四大参数配置，我这里使用的是服务器上的数据库，暂时放在tomcat上就可直接运行，服务器1月份过期不续费 -->
+		<property name="jdbcUrl">jdbc:mysql://123.206.102.190:3306/voteSystem</property>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="user">voteSystem</property>
+		<property name="password">voteSystem</property>
+		<!-- 池参数配置 -->
+		<property name="acquireIncrement">3</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">2</property>
+		<property name="maxPoolSize">10</property>
+	</default-config>
+	
+	<!-- 专门为oracle提供的配置信息 -->
+	<named-config name="oracle-config"> 
+		<property name="jdbcUrl">jdbc:mysql://192.168.43.192:3306/voteSystem</property>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="user">voteSystem</property>
+		<property name="password">voteSystem</property>
+		<property name="acquireIncrement">3</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">2</property>
+		<property name="maxPoolSize">10</property>
+	</named-config>
+ 
+</c3p0-config>

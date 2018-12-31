@@ -1,0 +1,35 @@
+@import url('body.css');
+ul li{
+	   list-style: none;
+	  
+}
+
+ .message {
+            height: 630px;
+            background-color: rgba(30, 150, 194, 0);
+            margin-left: 0;
+            padding-left: 0;
+            border-left: 0;
+}
+        
+ .panel-heading {
+                  height: 36px;
+                  background-color: rgba(30, 150, 194, 0);
+}
+        
+.panel-footer {
+                text-align: right;
+}
+        
+.letter {
+          font-family: "ºÚÌå";
+          font-size: 15px;
+          letter-spacing: 2px;
+}
+ .long {
+           height: 88px;
+}
+        
+ .foot {
+          text-align: center;
+}
